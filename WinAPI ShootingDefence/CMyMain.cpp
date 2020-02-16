@@ -5,6 +5,7 @@
 #include "GlobalValue.h"
 #include "CBullet_Mgr.h"
 #include "CMonster_Mgr.h"
+#include "CItem_Mgr.h"
 
 #include <mmsystem.h>					// timeGetTime() 함수 사용을 위하여 ...
 #include <time.h>						// <--- 랜덤값을 얻기 위하여...
@@ -55,6 +56,10 @@ void CMyMain::MainInit(HWND hWnd)
 	//------ 몬스터 매니저 초기화
 	g_Mon_Mgr.MonMgr_Init(hWnd);
 	//------ 몬스터 매니저 초기화
+
+	//------ 아이템 매니저 초기화
+	g_ItemMgr.ItemMgr_Init();
+	//------ 아이템 매니저 초기화
 }
 
 void CMyMain::MainUpdate(HWND hWnd)
@@ -86,8 +91,12 @@ void CMyMain::MainUpdate(HWND hWnd)
 	//------ 몬스터 매니저 업데이트
 
 	//------ 총알 매니저 업데이트
-	g_Bullet_Mgr.BLMgr_Update(m_DeltaTime, m_hWnd);
+	g_Bullet_Mgr.BLMgr_Update(m_DeltaTime, m_hWnd, &g_Mon_Mgr);
 	//------ 총알 매니저 업데이트
+
+	//------ 아이템 매니저 업데이트
+	g_ItemMgr.ItemMgr_Update(m_DeltaTime);
+	//------ 아이템 매니저 업데이트
 }
 
 void CMyMain::MainRender(HWND hWnd)
@@ -99,6 +108,10 @@ void CMyMain::MainRender(HWND hWnd)
 	//------ 백그라운드 렌더
 	g_BGround.BG_Render(m_hBackDC, m_Rect);
 	//------ 백그라운드 렌더
+
+	//------ 아이템 렌더
+	g_ItemMgr.ItemMgr_Render(m_hBackDC);
+	//------ 아이템 렌더
 
 	//------ 몬스터 이미지 렌더...
 	g_Mon_Mgr.MonMgr_Render(m_hBackDC);		// 보스가 쏜 총알이 잡몹 위로 지나가게끔 먼저 렌더링
@@ -122,6 +135,10 @@ void CMyMain::MainRender(HWND hWnd)
 
 void CMyMain::MainDestroy()
 {
+	//------ 아이템 제거...
+	g_ItemMgr.ItemMgr_Destroy();
+	//------ 아이템 제거...
+
 	//------ 몬스터 제거...
 	g_Mon_Mgr.MonMgr_Destroy();
 	//------ 몬스터 제거...

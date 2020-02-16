@@ -14,6 +14,9 @@ public:
 	RECT m_cRT;						// 계산용 변수
 	int m_SpawnLim = 6;				// 필드에 등장하는 몬스터 수 제어 변수
 
+	HBRUSH m_R_brsh;
+	HGDIOBJ m_R_Old_brsh;
+
 public:
 	CMonster_Mgr();
 	~CMonster_Mgr();
@@ -25,6 +28,7 @@ public:
 	void MonMgr_Destroy();
 
 	void SpawnMonster(float a_DeltaTime, HWND a_hWnd);
+	void TakeDamage_MonMgr(class CBullet* a_RefBullet = NULL);
 };
 
 extern CMonster_Mgr g_Mon_Mgr;

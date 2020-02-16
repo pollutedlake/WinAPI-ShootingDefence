@@ -1,9 +1,16 @@
 #include "framework.h"
 #include "CBullet.h"
 
+HBRUSH CBullet::m_R_brsh = NULL;
+
 CBullet::CBullet()
 {
+	if (m_R_brsh == NULL) {
+		m_R_brsh = CreateSolidBrush(RGB(255, 0, 0));
+	}
+	
 	m_BLActive = false;
+	m_BL_Type = BT_Normal;		// 기본은 일반 총알
 
 	m_LifeTime = 4.0f;
 	m_MoveSpeed = 800.0f;		// 800픽셀 / 1초
@@ -13,6 +20,10 @@ CBullet::CBullet()
 
 CBullet::~CBullet()
 {
+	if (m_R_brsh != NULL) {
+		DeleteObject(m_R_brsh);
+		m_R_brsh = NULL;
+	}
 }
 
 bool CBullet::BulletUpdate(float a_DeltaTime)
@@ -30,5 +41,16 @@ bool CBullet::BulletUpdate(float a_DeltaTime)
 
 void CBullet::BulletRender(HDC a_hDC)
 {
-	Ellipse(a_hDC, (int)(m_CurPos.x - 8.0f), (int)(m_CurPos.y - 8.0f), (int)(m_CurPos.x + 8.0f), (int)(m_CurPos.y + 8.0f));
+	if (m_BL_Type == BT_Skill1) {
+		if (m_R_brsh != NULL) {
+			a_R_Old_brsh = (HBRUSH)SelectObject(a_hDC, m_R_brsh);
+
+			Ellipse(a_hDC, (int)(m_CurPos.x - 8.0f), (int)(m_CurPos.y - 8.0f), (int)(m_CurPos.x + 8.0f), (int)(m_CurPos.y + 8.0f));
+
+			SelectObject(a_hDC, a_R_Old_brsh);		// 기존 브러쉬로 교체
+		}
+	}
+	else {		// 일반 타입의 총알
+		Ellipse(a_hDC, (int)(m_CurPos.x - 8.0f), (int)(m_CurPos.y - 8.0f), (int)(m_CurPos.x + 8.0f), (int)(m_CurPos.y + 8.0f));
+	}
 }

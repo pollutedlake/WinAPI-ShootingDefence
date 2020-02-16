@@ -1,5 +1,10 @@
-﻿  CMyMain.cpp
-C:\Users\psh95\source\repos\WinAPI ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(81,21): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\source\repos\WinAPI ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(85,26): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\source\repos\WinAPI ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(89,28): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  WinAPI ShootingDefence.vcxproj -> C:\Users\psh95\source\repos\WinAPI ShootingDefence\Debug\WinAPI ShootingDefence.exe
+﻿  CMonster_Mgr.cpp
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(81,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(89,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(143,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(156,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(166,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(188,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(199,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(288,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  WinAPI ShootingDefence.vcxproj -> C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Gaming Programing\WinAPI-ShootingDefence\Debug\WinAPI ShootingDefence.exe

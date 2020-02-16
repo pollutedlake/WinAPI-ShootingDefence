@@ -22,11 +22,11 @@ public:
 
 public:
 	void BLMgr_Init();
-	void BLMgr_Update(float a_DeltaTime, HWND a_hWnd);
+	void BLMgr_Update(float a_DeltaTime, HWND a_hWnd, class CMonster_Mgr* a_MonMgr = NULL);
 	void BLMgr_Render(HDC a_hDC);
 	void BLMgr_Destroy();
 
-	void SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV);
+	void SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, BulletType a_BLTP = BT_Normal);
 };
 
 extern CBullet_Mgr g_Bullet_Mgr;

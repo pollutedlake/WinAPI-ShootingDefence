@@ -155,6 +155,8 @@
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBullet_Mgr.h" />
     <ClInclude Include="CHero.h" />
+    <ClInclude Include="CItem.h" />
+    <ClInclude Include="CItem_Mgr.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CMonster_Mgr.h" />
     <ClInclude Include="CMyMain.h" />
@@ -170,6 +172,8 @@
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBullet_Mgr.cpp" />
     <ClCompile Include="CHero.cpp" />
+    <ClCompile Include="CItem.cpp" />
+    <ClCompile Include="CItem_Mgr.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CMonster_Mgr.cpp" />
     <ClCompile Include="CMyMain.cpp" />

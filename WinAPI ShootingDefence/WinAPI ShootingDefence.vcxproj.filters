@@ -54,6 +54,12 @@
     <ClInclude Include="CMonster_Mgr.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CItem_Mgr.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI ShootingDefence.cpp">
@@ -84,6 +90,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CMonster_Mgr.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem_Mgr.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

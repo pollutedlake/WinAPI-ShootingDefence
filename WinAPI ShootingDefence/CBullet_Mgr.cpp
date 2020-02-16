@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CBullet_Mgr.h"
+#include "CMonster_Mgr.h"
 
 CBullet_Mgr::CBullet_Mgr()
 {
@@ -23,7 +24,7 @@ void CBullet_Mgr::BLMgr_Init()
 	m_h_pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));	// 선종류(실선), 두께(1), RGB색
 }
 
-void CBullet_Mgr::BLMgr_Update(float a_DeltaTime, HWND a_hWnd)
+void CBullet_Mgr::BLMgr_Update(float a_DeltaTime, HWND a_hWnd, CMonster_Mgr* a_MonMgr)
 {
 	//------ 모든 총알 이동관련 업데이트 처리
 	static Vector2D a_CalcBVec;
@@ -33,6 +34,8 @@ void CBullet_Mgr::BLMgr_Update(float a_DeltaTime, HWND a_hWnd)
 		}
 
 		m_BullList[aii]->BulletUpdate(a_DeltaTime);
+
+		a_MonMgr->TakeDamage_MonMgr(m_BullList[aii]);
 	}	// for (int aii = 0; aii < m_BullList.size(); aii++)
 	//------ 모든 총알 이동관련 업데이트 처리
 }
@@ -81,7 +84,7 @@ void CBullet_Mgr::BLMgr_Destroy()
 	}
 }
 
-void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV)
+void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, BulletType a_BLTP)
 {
 	CBullet* a_BNode = NULL;
 
@@ -105,6 +108,7 @@ void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV)
 	a_BNode->m_CurPos = a_BNode->m_CurPos + a_BNode->m_DirVec * 20.0f;
 	a_BNode->m_BLActive = true;
 	a_BNode->m_LifeTime = 4.0f;
+	a_BNode->m_BL_Type = a_BLTP;
 }
 
 CBullet_Mgr g_Bullet_Mgr;

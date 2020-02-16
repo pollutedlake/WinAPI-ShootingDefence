@@ -27,6 +27,29 @@ class CHero
 	float m_AttackSpeed = 0.1f;		// 공격속도
 	float m_BLCycle = 0.0f;
 
+	int m_CurHP;
+	int m_MaxHP;
+
+	HBRUSH m_R_brsh;
+	HGDIOBJ m_R_Old_brsh;
+
+	//------ 쉴드
+	Image* m_Shield;
+	float m_SdDuration = 8.0f;
+
+public:
+	float m_SdOnTime = 0.0f;
+	float m_SdHalfSize;
+	//------ 쉴드
+
+	//------ 능력치
+	float m_CurAttack = 10.0f;		// 주인공의 공격력
+	int m_KillCount = 0;			// 킬 수
+	int m_SkillCount = 5;			// 남은 스킬 수
+	int m_ShieldCount = 5;			// 남은 보호막 수
+	int m_MyMoney = 0;				// 유저의 골드
+	//------ 능력치
+
 public:
 	Vector2D m_CurPos;
 	float m_HalfColl = 20.0f;		// 주인공의 충돌 반경
@@ -43,6 +66,13 @@ public:
 
 	void HeroLimitMove(RECT& a_RT);
 	void LoadUnitSize();
+
+	void Load_Shield();
+	void ShieldUpdate();
+	void ShieldRender(Graphics& graphics);
+	void ShieldDestroy();
+
+	void TakeDamage(float a_Damage = 10.0f);
 };
 
 extern CHero g_Hero;

@@ -1,9 +1,14 @@
 #include "framework.h"
 #include "CHero.h"
+#include "GlobalValue.h"
 #include "CBullet_Mgr.h"
 
 CHero::CHero()
 {
+	m_SocketImg = NULL;
+
+	m_CurHP = 150;
+	m_MaxHP = 150;
 }
 
 CHero::~CHero()
@@ -24,6 +29,10 @@ void CHero::Init_Unit(HWND a_hWnd)
 	m_CurPos.x = (float)(a_Crt.right / 2);
 	m_CurPos.y = (float)(a_Crt.bottom / 2);
 	//------ 주인공 좌표 초기화 부분
+
+	m_R_brsh = CreateSolidBrush(RGB(255, 0, 0));		// brush 추가, pen 과 같은 방식으로
+
+	Load_Shield();
 }
 
 void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
@@ -101,7 +110,7 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 				a_TargetV.x = a_CalcStartV.x + (Radius * cos(Angle));
 				a_TargetV.y = a_CalcStartV.y + (Radius * sin(Angle));
 
-				g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV);
+				g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, BT_Skill1);
 			}
 
 			isSPDown = false;
@@ -111,16 +120,36 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 		isSPDown = true;
 	}
 	//------ 궁극기
+
+	ShieldUpdate();
 }	// void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 
-void CHero::Render_Unit(HDC a_hdc)
+void CHero::Render_Unit(HDC a_hDC)
 {
 	if (m_SocketImg == NULL) {
 		return;
 	}
 
-	Graphics graphics(a_hdc);
+	// HP Bar Render
+	static HBRUSH h_Old_Brush;
+	h_Old_Brush = (HBRUSH)SelectObject(a_hDC, m_R_brsh);
+	static float a_CalcMXX = 0.0f;
+	static float a_CalcMYY = (int)(m_HalfHeight + 0.8f);
+	static float a_HpBSize = 50;
+	static float a_CurHpSize = 0;
+	a_CalcMXX = a_HpBSize / 2.0f;
+	a_CurHpSize = a_HpBSize * ((float)m_CurHP / (float)m_MaxHP);
+
+	a_CalcMYY = m_HalfHeight;
+
+	Rectangle(a_hDC, m_CurPos.x - a_CalcMXX, m_CurPos.y - a_CalcMYY, m_CurPos.x - a_CalcMXX + a_CurHpSize, m_CurPos.y - (a_CalcMYY + 10.0f));
+	SelectObject(a_hDC, h_Old_Brush);		// 기존 브러쉬로 교체
+	// HP Bar Render
+
+	Graphics graphics(a_hDC);
 	graphics.DrawImage(m_SocketImg, m_CurPos.x - m_HalfWidth, m_CurPos.y - (int)(m_HalfHeight * 1.2f), (float)m_ImgSizeX, (float)m_ImgSizeY);
+
+	ShieldRender(graphics);
 }
 
 void CHero::Destroy_Unit()
@@ -129,6 +158,13 @@ void CHero::Destroy_Unit()
 		delete m_SocketImg;
 		m_SocketImg = NULL;
 	}
+
+	if (m_R_brsh != NULL) {
+		DeleteObject(m_R_brsh);
+		m_R_brsh = NULL;
+	}
+
+	ShieldDestroy();
 }
 
 void CHero::HeroLimitMove(RECT& a_RT)
@@ -166,6 +202,89 @@ void CHero::LoadUnitSize()
 
 	m_HalfWidth = m_ImgSizeX / 2;
 	m_HalfHeight = m_ImgSizeY / 2;
+}
+
+void CHero::Load_Shield()
+{
+	if (m_Shield != NULL) {
+		return;
+	}
+
+	m_Shield = Image::FromFile(_T("./RscTrunk/Shield1.png"));
+}
+
+void CHero::ShieldUpdate()
+{
+	//------ 쉴드 스킬 발동
+	static bool isSkDown = true;
+	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000) {
+		if (isSkDown == true) {
+			// 쉴드 발동
+			if (0 < m_ShieldCount) {
+				if (m_SdOnTime <= 0.0f) {
+					m_SdOnTime = m_SdDuration;
+					m_ShieldCount--;
+					if (m_ShieldCount < 0) {
+						m_ShieldCount = 0;
+					}
+				}
+			}
+			// 쉴드 발동
+
+			isSkDown = false;
+		}
+	}
+	else {
+		isSkDown = true;
+	}
+	//------ 쉴드 스킬 발동
+}
+
+void CHero::ShieldRender(Graphics& graphics)
+{
+	//------ Shield 렌더
+	if (m_Shield == NULL) {
+		return;
+	}
+
+	if (0.0f < m_SdOnTime) {
+		m_SdOnTime = m_SdOnTime - m_DeltaTime;
+		static float a_EffTime = 0.0f;
+		static float a_CalcSize = 0.0f;
+		static Vector2D a_SdCen;
+		if ((m_SdDuration - 0.2f) <= m_SdOnTime) {
+			a_EffTime = (m_SdDuration - m_SdOnTime) / 0.2f;		// (m_SdDuration - m_SdOnTime) 변화값은 0.0f ~ 0.2f
+		}
+		else if (m_SdOnTime <= 0.2f) {
+			a_EffTime = m_SdOnTime / 0.2f;		// (m_SdDuration - m_SdOnTime) 변화값은 0.2f ~ 0.0f
+		}
+		else {
+			a_EffTime = 1.0f;
+		}
+		a_CalcSize = 500.0f * a_EffTime;
+		m_SdHalfSize = a_CalcSize / 2.0f;
+
+		graphics.DrawImage(m_Shield, Rect(m_CurPos.x - m_SdHalfSize + 1.0f, m_CurPos.y - m_SdHalfSize, a_CalcSize, a_CalcSize), 0, 0, m_Shield->GetWidth(), m_Shield->GetHeight(), UnitPixel);
+	}
+	//------ Shield 렌더
+}
+
+void CHero::ShieldDestroy()
+{
+	if (m_Shield != NULL) {
+		delete m_Shield;
+		m_Shield = NULL;
+	}
+}
+
+void CHero::TakeDamage(float a_Damage)
+{
+	// 몬스터가 주인공 공격
+	m_CurHP = m_CurHP - (int)a_Damage;
+
+	if (m_CurHP <= 0) {		// 사망처리
+		m_CurHP = 0;
+	}
 }
 
 CHero g_Hero;

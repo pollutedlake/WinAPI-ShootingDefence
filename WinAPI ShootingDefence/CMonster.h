@@ -11,6 +11,7 @@ using namespace Gdiplus;
 
 class CMonster
 {
+public:
 	Image* m_SocketImg;		// 애니 소켓처럼 사용할 포인터
 
 	int m_ImgSizeX;			// 이미지의 가로 사이즈
@@ -18,7 +19,6 @@ class CMonster
 	int m_HalfWidth = 15;	// 기본 이미지의 가로 반사이즈
 	int m_HalfHeight = 15;	// 기본 이미지의 세로 반사이즈
 
-public:
 	enum CT_Type m_CharType;		// 캐릭터 종류가 "몬스터"인지? "나나미"인지?
 	bool m_isActive;
 	float m_MaxHP = 100.0f;
@@ -42,5 +42,7 @@ public:
 	void Destroy_Unit();
 
 	void LoadUnitSize();
+	void Spawn(float a_XX, float a_YY);
+	void TakeDamage(float a_Value = 10.0f);
 };
 
