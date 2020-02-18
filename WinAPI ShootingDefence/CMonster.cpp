@@ -2,6 +2,7 @@
 #include "CMonster.h"
 #include "CHero.h"
 #include "GlobalValue.h"
+#include "CItem_Mgr.h"
 
 CMonster::CMonster()
 {
@@ -123,6 +124,10 @@ void CMonster::TakeDamage(float a_Value)
 
 	if (m_CurHP <= 0.0f) {		// 몬스터 사망 처리
 		m_CurHP = 0.0f;
+
+		//------ Item 스폰
+		g_ItemMgr.SpawnItem(m_CurPos);
+		//------ Item 스폰
 
 		m_isActive = false;		//------ 사망 몬스터 제거
 	}

@@ -6,6 +6,7 @@
 #include "CBullet_Mgr.h"
 #include "CMonster_Mgr.h"
 #include "CItem_Mgr.h"
+#include "CUI_Manager.h"
 
 #include <mmsystem.h>					// timeGetTime() 함수 사용을 위하여 ...
 #include <time.h>						// <--- 랜덤값을 얻기 위하여...
@@ -40,6 +41,10 @@ void CMyMain::MainInit(HWND hWnd)
 	SelectObject(m_hBackDC, m_hBackBitmap);		// BackDC에 Bitmap(이미지)을 붙여준다.
 	ReleaseDC(hWnd, a_hdc);
 	//------ 후면 BackDC 생성
+
+	//------ GUI 초기화
+	g_GUI_Mgr.UIMgr_Init();
+	//------ GUI 초기화
 
 	//------ 백그라운드 초기화
 	g_BGround.BG_Init(hWnd);
@@ -97,6 +102,10 @@ void CMyMain::MainUpdate(HWND hWnd)
 	//------ 아이템 매니저 업데이트
 	g_ItemMgr.ItemMgr_Update(m_DeltaTime);
 	//------ 아이템 매니저 업데이트
+
+	//------ GUI 업데이트
+	g_GUI_Mgr.UIMgr_Update(hWnd, m_DeltaTime, NULL, NULL);
+	//------ GUI 업데이트
 }
 
 void CMyMain::MainRender(HWND hWnd)
@@ -125,6 +134,10 @@ void CMyMain::MainRender(HWND hWnd)
 	g_Hero.Render_Unit(m_hBackDC);
 	//------ 주인공 렌더
 
+	//------ GUI 렌더링
+	g_GUI_Mgr.UIMgr_Render(m_hBackDC, m_Rect);
+	//------ GUI 렌더링
+
 	//------ 화면전환
 	static HDC hdc;
 	hdc = GetDC(hWnd);
@@ -135,13 +148,13 @@ void CMyMain::MainRender(HWND hWnd)
 
 void CMyMain::MainDestroy()
 {
-	//------ 아이템 제거...
+	//------ 아이템 제거
 	g_ItemMgr.ItemMgr_Destroy();
-	//------ 아이템 제거...
+	//------ 아이템 제거
 
-	//------ 몬스터 제거...
+	//------ 몬스터 제거
 	g_Mon_Mgr.MonMgr_Destroy();
-	//------ 몬스터 제거...
+	//------ 몬스터 제거
 
 	//------ 총알 제거
 	g_Bullet_Mgr.BLMgr_Destroy();
@@ -154,6 +167,10 @@ void CMyMain::MainDestroy()
 	//------ 백그라운드 제거
 	g_BGround.BG_Destroy();
 	//------ 백그라운드 제거
+
+	//------ GUI 제거
+	g_GUI_Mgr.UIMgr_Destroy();
+	//------ GUI 제거
 
 	//------ 후면 BackDC 제거
 	if (m_hBackBitmap != NULL) {

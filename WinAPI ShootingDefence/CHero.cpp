@@ -160,7 +160,7 @@ void CHero::Destroy_Unit()
 	}
 
 	if (m_R_brsh != NULL) {
-		DeleteObject(m_R_brsh);
+		DeleteObject(m_R_brsh);		// brush object Á¦°Å
 		m_R_brsh = NULL;
 	}
 

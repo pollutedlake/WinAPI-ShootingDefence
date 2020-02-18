@@ -27,9 +27,11 @@ class CHero
 	float m_AttackSpeed = 0.1f;		// 공격속도
 	float m_BLCycle = 0.0f;
 
+public:
 	int m_CurHP;
 	int m_MaxHP;
 
+private:
 	HBRUSH m_R_brsh;
 	HGDIOBJ m_R_Old_brsh;
 
