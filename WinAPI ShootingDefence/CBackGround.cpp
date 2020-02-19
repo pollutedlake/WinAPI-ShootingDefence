@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CBackGround.h"
+#include "GlobalValue.h"
 
 CBackGround::CBackGround()
 {

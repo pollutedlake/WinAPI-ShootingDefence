@@ -56,6 +56,8 @@ public:
 	Vector2D m_CurPos;
 	float m_HalfColl = 20.0f;		// 주인공의 충돌 반경
 
+	float m_STDelay = 0.5f;
+
 public:
 	CHero();
 	~CHero();

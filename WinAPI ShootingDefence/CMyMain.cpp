@@ -83,25 +83,27 @@ void CMyMain::MainUpdate(HWND hWnd)
 
 	GetClientRect(hWnd, &m_Rect);
 
-	//------ 백그라운드 업데이트
-	// g_BGround.BG_Update();
-	//------ 백그라운드 업데이트
+	if (g_GameState == GAME_START) {
+		//------ 백그라운드 업데이트
+		// g_BGround.BG_Update();
+		//------ 백그라운드 업데이트
 
-	//------ 주인공 업데이트
-	g_Hero.Update_Unit(m_DeltaTime, m_Rect);
-	//------ 주인공 업데이트
+		//------ 주인공 업데이트
+		g_Hero.Update_Unit(m_DeltaTime, m_Rect);
+		//------ 주인공 업데이트
 
-	//------ 몬스터 매니저 업데이트
-	g_Mon_Mgr.MonMgr_Update(m_DeltaTime, hWnd, g_Hero);
-	//------ 몬스터 매니저 업데이트
+		//------ 몬스터 매니저 업데이트
+		g_Mon_Mgr.MonMgr_Update(m_DeltaTime, hWnd, g_Hero);
+		//------ 몬스터 매니저 업데이트
 
-	//------ 총알 매니저 업데이트
-	g_Bullet_Mgr.BLMgr_Update(m_DeltaTime, m_hWnd, &g_Mon_Mgr);
-	//------ 총알 매니저 업데이트
+		//------ 총알 매니저 업데이트
+		g_Bullet_Mgr.BLMgr_Update(m_DeltaTime, m_hWnd, &g_Mon_Mgr);
+		//------ 총알 매니저 업데이트
 
-	//------ 아이템 매니저 업데이트
-	g_ItemMgr.ItemMgr_Update(m_DeltaTime);
-	//------ 아이템 매니저 업데이트
+		//------ 아이템 매니저 업데이트
+		g_ItemMgr.ItemMgr_Update(m_DeltaTime);
+		//------ 아이템 매니저 업데이트
+	}	// if (g_GameState == GAME_START)
 
 	//------ GUI 업데이트
 	g_GUI_Mgr.UIMgr_Update(hWnd, m_DeltaTime, NULL, NULL);
@@ -114,36 +116,38 @@ void CMyMain::MainRender(HWND hWnd)
 		return;
 	}
 
-	//------ 백그라운드 렌더
-	g_BGround.BG_Render(m_hBackDC, m_Rect);
-	//------ 백그라운드 렌더
+	if (g_GameState == GAME_START) {
+		//------ 백그라운드 렌더
+		g_BGround.BG_Render(m_hBackDC, m_Rect);
+		//------ 백그라운드 렌더
 
-	//------ 아이템 렌더
-	g_ItemMgr.ItemMgr_Render(m_hBackDC);
-	//------ 아이템 렌더
+		//------ 아이템 렌더
+		g_ItemMgr.ItemMgr_Render(m_hBackDC);
+		//------ 아이템 렌더
 
-	//------ 몬스터 이미지 렌더...
-	g_Mon_Mgr.MonMgr_Render(m_hBackDC);		// 보스가 쏜 총알이 잡몹 위로 지나가게끔 먼저 렌더링
-	//------ 몬스터 이미지 렌더...
+		//------ 몬스터 이미지 렌더...
+		g_Mon_Mgr.MonMgr_Render(m_hBackDC);		// 보스가 쏜 총알이 잡몹 위로 지나가게끔 먼저 렌더링
+		//------ 몬스터 이미지 렌더...
 
-	//------ 총알 렌더
-	g_Bullet_Mgr.BLMgr_Render(m_hBackDC);
-	//------ 총알 렌더
+		//------ 총알 렌더
+		g_Bullet_Mgr.BLMgr_Render(m_hBackDC);
+		//------ 총알 렌더
 
-	//------ 주인공 렌더
-	g_Hero.Render_Unit(m_hBackDC);
-	//------ 주인공 렌더
+		//------ 주인공 렌더
+		g_Hero.Render_Unit(m_hBackDC);
+		//------ 주인공 렌더
+	}	// if (g_GameState == GAME_START)
 
 	//------ GUI 렌더링
 	g_GUI_Mgr.UIMgr_Render(m_hBackDC, m_Rect);
 	//------ GUI 렌더링
 
-	//------ 화면전환
+	//------ 화면전환(더블 버퍼링)
 	static HDC hdc;
 	hdc = GetDC(hWnd);
 	BitBlt(hdc, 0, 0, m_Rect.right, m_Rect.bottom, m_hBackDC, 0, 0, SRCCOPY);
 	ReleaseDC(hWnd, hdc);
-	//------ 화면전환
+	//------ 화면전환(더블 버퍼링)
 }
 
 void CMyMain::MainDestroy()

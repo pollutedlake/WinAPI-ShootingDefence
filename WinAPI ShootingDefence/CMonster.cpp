@@ -124,6 +124,7 @@ void CMonster::TakeDamage(float a_Value)
 
 	if (m_CurHP <= 0.0f) {		// 몬스터 사망 처리
 		m_CurHP = 0.0f;
+		g_Hero.m_KillCount++;
 
 		//------ Item 스폰
 		g_ItemMgr.SpawnItem(m_CurPos);

@@ -9,12 +9,21 @@ using namespace Gdiplus;
 
 class CUI_Manager
 {
+	float m_DeltaTime = 0.0f;
+
 	Image* m_GUIBack = NULL;
 	Image* m_HP_Icon = NULL;
 
 	TCHAR m_StrBuff[128];
 	HFONT m_OldFont;
+	HFONT hFont_100 = NULL;
+	HFONT hFont_50 = NULL;
 	HFONT m_Font_26Godic = NULL;
+
+	HPEN h_Pen;
+	HPEN h_OldPen;
+	HBRUSH h_Brush;
+	HBRUSH h_OldBrush;
 
 public:
 	CUI_Manager();

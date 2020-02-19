@@ -96,23 +96,41 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 
 	//------ ±Ã±Ø±â
 	static bool isSPDown = true;
+	if (g_GameState == GAME_READY) {
+		m_STDelay = 0.5f;
+	}
+	else {
+		m_STDelay -= a_DeltaTime;
+		if (0.0f < m_STDelay) {
+			isSPDown = false;
+		}
+		else {
+			m_STDelay = 0.0f;
+		}
+	}	// else
+
 	if ((GetAsyncKeyState(VK_SPACE) & 0x8000)) {
 		if (isSPDown == true) {
-			CBullet* a_BNode = NULL;
-			float Radius = 100.0f;
-			float Angle = 0.0f;
-			static Vector2D a_CalcStartV;
-			static Vector2D a_TargetV;
-			//--- 12µîºÐ 16µîºÐ
-			for (Angle = 0; Angle < (2.0f * 3.141592f); Angle += (3.141592f / 12)) {
-				a_CalcStartV = m_CurPos;
+			if (0 < m_SkillCount) {
+				CBullet* a_BNode = NULL;
+				float Radius = 100.0f;
+				float Angle = 0.0f;
+				static Vector2D a_CalcStartV;
+				static Vector2D a_TargetV;
+				//--- 12µîºÐ 16µîºÐ
+				for (Angle = 0; Angle < (2.0f * 3.141592f); Angle += (3.141592f / 12)) {
+					a_CalcStartV = m_CurPos;
 
-				a_TargetV.x = a_CalcStartV.x + (Radius * cos(Angle));
-				a_TargetV.y = a_CalcStartV.y + (Radius * sin(Angle));
+					a_TargetV.x = a_CalcStartV.x + (Radius * cos(Angle));
+					a_TargetV.y = a_CalcStartV.y + (Radius * sin(Angle));
 
-				g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, BT_Skill1);
-			}
-
+					g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, BT_Skill1);
+				}
+				m_SkillCount--;
+				if (m_SkillCount < 0) {
+					m_SkillCount = 0;
+				}
+			}	// if (0 < m_SkillCount)
 			isSPDown = false;
 		}	// if (isSPDown == true)
 	}	// if ((GetAsyncKeyState(VK_SPACE) & 0x8000))
@@ -283,6 +301,7 @@ void CHero::TakeDamage(float a_Damage)
 	m_CurHP = m_CurHP - (int)a_Damage;
 
 	if (m_CurHP <= 0) {		// »ç¸ÁÃ³¸®
+		g_GameState = GAME_OVER;
 		m_CurHP = 0;
 	}
 }
