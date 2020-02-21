@@ -27,6 +27,7 @@ public:
 	void BLMgr_Destroy();
 
 	void SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, BulletType a_BLTP = BT_Normal);
+	void ReSrcClear();
 };
 
 extern CBullet_Mgr g_Bullet_Mgr;

@@ -154,6 +154,7 @@
     <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBullet_Mgr.h" />
+    <ClInclude Include="CButton.h" />
     <ClInclude Include="CHero.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CItem_Mgr.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBullet_Mgr.cpp" />
+    <ClCompile Include="CButton.cpp" />
     <ClCompile Include="CHero.cpp" />
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CItem_Mgr.cpp" />

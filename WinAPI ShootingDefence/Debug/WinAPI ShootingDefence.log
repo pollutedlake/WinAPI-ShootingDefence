@@ -1,7 +1,37 @@
-﻿  CMyMain.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(92,22): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(96,27): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(100,29): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(104,28): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(109,31): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  CUI_Manager.cpp
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(134,52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(176,52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(215,52): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(339,65): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(353,65): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(367,65): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(383,45): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(383,39): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(418,70): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(418,64): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(418,52): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(418,40): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(423,50): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(423,39): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(427,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(427,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(430,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(430,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(433,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(433,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(438,144): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(438,108): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(438,72): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(438,52): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(442,55): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(442,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(445,55): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(445,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(448,55): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(448,34): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(455,40): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(461,49): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(461,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(466,35): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CUI_Manager.cpp(523,36): warning C4244: '인수': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   WinAPI ShootingDefence.vcxproj -> C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\Debug\WinAPI ShootingDefence.exe

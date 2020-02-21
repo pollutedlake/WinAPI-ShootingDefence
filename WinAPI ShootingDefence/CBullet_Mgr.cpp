@@ -111,4 +111,13 @@ void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, BulletType 
 	a_BNode->m_BL_Type = a_BLTP;
 }
 
+void CBullet_Mgr::ReSrcClear()
+{
+	//------ 남은 총알 제거
+	for (int aii = 0; aii < m_BullList.size(); aii++) {
+		m_BullList[aii]->m_BLActive = false;
+	}
+	//------ 남은 총알 제거
+}
+
 CBullet_Mgr g_Bullet_Mgr;

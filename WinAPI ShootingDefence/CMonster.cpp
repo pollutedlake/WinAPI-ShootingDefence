@@ -78,7 +78,7 @@ void CMonster::Render_Unit(HDC a_hDC, HBRUSH& a_R_brsh)
 		a_CalcMYY = (int)(m_HalfHeight * 0.83f);
 	}
 	else if (m_CharType == CT_Zombie2 || m_CharType == CT_Zombie4) {
-		a_CalcMYY = (int)(m_HalfHeight * 0.83f);
+		a_CalcMYY = (int)(m_HalfHeight * 0.67f);
 	}
 
 	Rectangle(a_hDC, m_CurPos.x - a_CalcMXX, m_CurPos.y - a_CalcMYY, m_CurPos.x - a_CalcMXX + a_CurHpSize, m_CurPos.y - (a_CalcMYY + 10.0f));
@@ -108,6 +108,24 @@ void CMonster::LoadUnitSize()
 
 void CMonster::Spawn(float a_XX, float a_YY)
 {
+	// 난이도에 따른 HP 변경
+	m_MaxHP = 50.0f + ((g_DiffLevel - 3) * 15.0f);
+	if (m_MaxHP < 50.0f) {
+		m_MaxHP = 50.0f;
+	}
+
+	if (200.0f < m_MaxHP) {
+		m_MaxHP = 200.0f;
+	}
+	// 난이도에 따른 HP 변경
+
+	// 난이도에 따른 이속 변경
+	m_Speed = 150.0f + ((g_DiffLevel - 1) * 30.0f);
+	if (280.0f < m_Speed) {
+		m_Speed = 280.0f;
+	}
+	// 난이도에 따른 이속 변경
+
 	m_CurPos.x = a_XX;
 	m_CurPos.y = a_YY;
 

@@ -77,6 +77,10 @@ public:
 	void ShieldDestroy();
 
 	void TakeDamage(float a_Damage = 10.0f);
+
+	static void BuyHP();
+	static void BuySkill();
+	static void BuyShield();
 };
 
 extern CHero g_Hero;

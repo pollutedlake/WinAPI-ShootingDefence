@@ -84,6 +84,21 @@ void CMyMain::MainUpdate(HWND hWnd)
 	GetClientRect(hWnd, &m_Rect);
 
 	if (g_GameState == GAME_START) {
+		static float a_TimeTic = 0;
+		a_TimeTic = a_TimeTic + m_DeltaTime;
+		if (1.0f <= a_TimeTic) {
+			if (0 < g_TimeOut) {
+				g_TimeOut--;
+				if (g_TimeOut <= 0) {
+					g_GameState = NEXT_LEVEL;
+					g_GUI_Mgr.m_ShopOnOff = true;
+					g_DiffLevel++;
+					g_TimeOut = 0;
+				}
+			}
+			a_TimeTic = 0;
+		}
+
 		//------ 백그라운드 업데이트
 		// g_BGround.BG_Update();
 		//------ 백그라운드 업데이트
@@ -106,7 +121,7 @@ void CMyMain::MainUpdate(HWND hWnd)
 	}	// if (g_GameState == GAME_START)
 
 	//------ GUI 업데이트
-	g_GUI_Mgr.UIMgr_Update(hWnd, m_DeltaTime, NULL, NULL);
+	g_GUI_Mgr.UIMgr_Update(hWnd, m_DeltaTime, NextLevel, ReSetGame);
 	//------ GUI 업데이트
 }
 
@@ -196,4 +211,77 @@ void CMyMain::MainDestroy()
 	//------ GDI+ 해제 <--- 다른 모든 이미지 제거 후 맨 마지막에 한번 해야 한다.
 }
 
-CMyMain g_CMyMain;
+void CMyMain::NextLevel()
+{
+	// 게임 초기화
+	g_TimeOut = 30;
+
+	//------ 남은 총알 제거
+	g_Bullet_Mgr.ReSrcClear();		// 주인공 텍스쳐와 남은 총알 제거
+	//------ 남은 총알 제거
+
+	//------ 남은 아이템 제거
+	g_ItemMgr.ReSrcClear();
+	//------ 남은 아이템 제거
+
+	//------ 남은 몬스터 제거
+	g_Mon_Mgr.ReSrcClear();
+	//------ 남은 몬스터 제거
+
+	//------ 주인공 초기화
+	static RECT a_RT;
+	GetClientRect(g_CMyMain.m_hWnd, &a_RT);
+	g_Hero.m_CurPos.x = (float)(a_RT.right / 2.0f);
+	g_Hero.m_CurPos.y = (float)(a_RT.bottom / 2.0f);
+
+	g_Hero.m_SdOnTime = 0.0f;
+
+	// g_Hero.ChangeState(Idle);
+	//------ 주인공 초기화
+
+	g_GameState = GAME_START;
+	// 게임 초기화
+}
+
+void CMyMain::ReSetGame()
+{
+	// 게임 초기화
+	g_TimeOut = 30;
+
+	g_DiffLevel = 1;
+
+	//------ 남은 총알 제거
+	g_Bullet_Mgr.ReSrcClear();		// 주인공 텍스쳐와 남은 총알 제거
+	//------ 남은 총알 제거
+
+	//------ 남은 아이템 제거
+	g_ItemMgr.ReSrcClear();
+	//------ 남은 아이템 제거
+
+	//------ 남은 몬스터 제거
+	g_Mon_Mgr.ReSrcClear();
+	//------ 남은 몬스터 제거
+
+	//------ 주인공 초기화
+	static RECT a_RT;
+	GetClientRect(g_CMyMain.m_hWnd, &a_RT);
+	g_Hero.m_CurPos.x = (float)(a_RT.right / 2.0f);
+	g_Hero.m_CurPos.y = (float)(a_RT.bottom / 2.0f);
+
+	g_Hero.m_SdOnTime = 0.0f;
+
+	// g_Hero.ChangeState(Idle);
+
+	g_Hero.m_CurHP = g_Hero.m_MaxHP;
+	g_Hero.m_SkillCount = 0;
+	g_Hero.m_ShieldCount = 5;
+	g_Hero.m_KillCount = 0;
+	g_Hero.m_STDelay = 0.5f;
+	g_Hero.m_MyMoney = 0;
+	//------ 주인공 초기화
+
+	g_GameState = GAME_READY;
+	// 게임 초기화
+}
+
+CMyMain g_CMyMain;		// 변수의 정의

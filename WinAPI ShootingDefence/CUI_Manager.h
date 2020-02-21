@@ -1,11 +1,6 @@
 #pragma once
 
-//------ GDI+ Image 사용을 위한 헤더 추가
-#include <Ole2.h>
-#include <gdiplus.h>
-#pragma comment(lib, "Gdiplus.lib")
-using namespace Gdiplus;
-//------ GDI+ Image 사용을 위한 헤더 추가
+#include "CButton.h"
 
 class CUI_Manager
 {
@@ -25,6 +20,24 @@ class CUI_Manager
 	HBRUSH h_Brush;
 	HBRUSH h_OldBrush;
 
+	//------ Shop
+public:
+	bool m_ShopOnOff;
+
+private:
+	Image* m_ShopBase;
+	ColorMatrix m_AlphaCM;
+
+	HFONT m_HumanF;
+
+	CButton m_CloseBtn;		// 닫기 버튼
+
+	Image* m_ShopBG[3];
+	Image* m_Image[3];
+	Image* m_CoinImg[3];
+	CButton m_AddBtn[3];	// Add 버튼
+	//------ Shop
+
 public:
 	CUI_Manager();
 	~CUI_Manager();
@@ -36,6 +49,13 @@ public:
 	void UIMgr_Destroy();							// 종료 처리 부분
 
 	void UserInfoPanel(HDC a_MainDC, Graphics& graphics, RECT& a_RT);
+
+	void StoreInit();
+	void StoreRender(HDC a_MainDC, Graphics& graphics, RECT& a_RT);
+	void StoreDestroy();
+
+	void LBtnDown(HWND a_hWnd);
+	void LBtnUp();
 };
 
 extern CUI_Manager g_GUI_Mgr;

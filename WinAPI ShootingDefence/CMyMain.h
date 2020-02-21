@@ -26,6 +26,9 @@ public:
 	void MainUpdate(HWND hWnd);
 	void MainRender(HWND hWnd);
 	void MainDestroy();
+
+	static void NextLevel();	// 다음 단계
+	static void ReSetGame();	// 게임 초기화 (다시하기...)
 };
 
 extern CMyMain g_CMyMain;		// 변수의 선언

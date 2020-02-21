@@ -306,4 +306,16 @@ void CHero::TakeDamage(float a_Damage)
 	}
 }
 
+void CHero::BuyHP()
+{
+}
+
+void CHero::BuySkill()
+{
+}
+
+void CHero::BuyShield()
+{
+}
+
 CHero g_Hero;

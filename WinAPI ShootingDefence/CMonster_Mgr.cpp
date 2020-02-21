@@ -196,6 +196,15 @@ void CMonster_Mgr::SpawnMonster(float a_DeltaTime, HWND a_hWnd)
 	static float a_SpawnTime = 0.0f;
 	a_SpawnTime = a_SpawnTime - a_DeltaTime;
 	if (a_SpawnTime < 0.0f) {
+		m_SpawnLim = 6 + (g_DiffLevel - 2);
+		if (m_SpawnLim < 6) {
+			m_SpawnLim = 6;
+		}
+
+		if (10 < m_SpawnLim) {
+			m_SpawnLim = 10;
+		}
+
 		for (int ii = 0; ii < m_MonList.size(); ii++) {
 			if (m_SpawnLim <= g_MonCount) {
 				break;
@@ -251,7 +260,7 @@ void CMonster_Mgr::SpawnMonster(float a_DeltaTime, HWND a_hWnd)
 				}
 				//------ Random 하게 스폰 좌표 생성하는 부분
 
-				m_MonList[ii]->m_CharType = CT_Zombie1;
+				m_MonList[ii]->m_CharType = GetSpMonType();
 				m_MonList[ii]->Spawn(a_XX, a_YY);
 				if (CT_None < m_MonList[ii]->m_CharType && m_MonList[ii]->m_CharType < CT_Length) {
 					m_MonList[ii]->m_SocketImg = g_Mon_Mgr.m_ImgList[m_MonList[ii]->m_CharType];
@@ -262,7 +271,7 @@ void CMonster_Mgr::SpawnMonster(float a_DeltaTime, HWND a_hWnd)
 			}	// if (m_MonList[ii]->m_isActive == false)
 		}	// for (int ii = 0; ii < m_MonList.size(); ii++)
 
-		a_SpawnTime = (float)((rand() % 3) + 2);
+		a_SpawnTime = GetSpTimeLevel();
 	}
 	//------ 주기적인 Monster Spawn
 }
@@ -299,6 +308,65 @@ void CMonster_Mgr::TakeDamage_MonMgr(CBullet* a_RefBullet)
 		}
 	}
 	//------ 총알이 몬스터에 맞았으면 제거해 준다. 몬스터 제거 총알 제거
+}
+
+void CMonster_Mgr::ReSrcClear()
+{
+	for (int ii = 0; ii < m_MonList.size(); ii++) {
+		m_MonList[ii]->m_isActive = false;
+	}
+}
+
+CT_Type CMonster_Mgr::GetSpMonType()
+{
+	CT_Type a_SpType = CT_Zombie1;
+
+	if (g_DiffLevel <= 1) {
+		a_SpType = CT_Zombie4;
+	}
+	else if (g_DiffLevel == 2) {
+		a_SpType = CT_Zombie1;
+	}
+	else if (g_DiffLevel == 3) {
+		a_SpType = CT_Zombie2;
+	}
+	else if (g_DiffLevel == 4) {
+		a_SpType = CT_Zombie6;
+	}
+	else if (g_DiffLevel == 5 || g_DiffLevel == 6) {
+		a_SpType = CT_Zombie3;
+	}
+	else {
+		a_SpType = CT_Zombie8;
+	}
+
+	return a_SpType;
+}
+
+float CMonster_Mgr::GetSpTimeLevel()
+{
+	float a_SpTime = 2.0f;
+
+	if (g_DiffLevel <= 1) {
+		a_SpTime = (float)(rand() % 3 + 2);		// 다음 스폰 시간 랜덤
+	}
+	else if (g_DiffLevel == 2) {
+		a_SpTime = (float)(rand() % 3 + 1);		// 다음 스폰 시간 랜덤
+	}
+	else if (g_DiffLevel == 3) {
+		a_SpTime = (float)(rand() % 2 + 1);		// 다음 스폰 시간 랜덤
+	}
+	else if (g_DiffLevel == 4) {
+		a_SpTime = 1.0f;		// 다음 스폰 시간 랜덤
+	}
+	else if (g_DiffLevel == 5) {
+		a_SpTime = 0.5f;		// 다음 스폰 시간 랜덤
+	}
+	else {
+		a_SpTime = 0.3f;		// 다음 스폰 시간 랜덤
+	}
+
+	return a_SpTime;
 }
 
 CMonster_Mgr g_Mon_Mgr;
