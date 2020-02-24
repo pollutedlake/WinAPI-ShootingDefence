@@ -124,7 +124,7 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 					a_TargetV.x = a_CalcStartV.x + (Radius * cos(Angle));
 					a_TargetV.y = a_CalcStartV.y + (Radius * sin(Angle));
 
-					g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, BT_Skill1);
+					g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, CT_Unit, BT_Skill1);
 				}
 				m_SkillCount--;
 				if (m_SkillCount < 0) {
@@ -148,7 +148,7 @@ void CHero::Render_Unit(HDC a_hDC)
 		return;
 	}
 
-	// HP Bar Render
+	//------ HP Bar Render
 	static HBRUSH h_Old_Brush;
 	h_Old_Brush = (HBRUSH)SelectObject(a_hDC, m_R_brsh);
 	static float a_CalcMXX = 0.0f;
@@ -162,7 +162,7 @@ void CHero::Render_Unit(HDC a_hDC)
 
 	Rectangle(a_hDC, m_CurPos.x - a_CalcMXX, m_CurPos.y - a_CalcMYY, m_CurPos.x - a_CalcMXX + a_CurHpSize, m_CurPos.y - (a_CalcMYY + 10.0f));
 	SelectObject(a_hDC, h_Old_Brush);		// 기존 브러쉬로 교체
-	// HP Bar Render
+	//------ HP Bar Render
 
 	Graphics graphics(a_hDC);
 	graphics.DrawImage(m_SocketImg, m_CurPos.x - m_HalfWidth, m_CurPos.y - (int)(m_HalfHeight * 1.2f), (float)m_ImgSizeX, (float)m_ImgSizeY);
@@ -260,7 +260,7 @@ void CHero::ShieldUpdate()
 
 void CHero::ShieldRender(Graphics& graphics)
 {
-	//------ Shield 렌더
+	//------ Shield 렌더링
 	if (m_Shield == NULL) {
 		return;
 	}
@@ -284,7 +284,7 @@ void CHero::ShieldRender(Graphics& graphics)
 
 		graphics.DrawImage(m_Shield, Rect(m_CurPos.x - m_SdHalfSize + 1.0f, m_CurPos.y - m_SdHalfSize, a_CalcSize, a_CalcSize), 0, 0, m_Shield->GetWidth(), m_Shield->GetHeight(), UnitPixel);
 	}
-	//------ Shield 렌더
+	//------ Shield 렌더링
 }
 
 void CHero::ShieldDestroy()
@@ -308,14 +308,33 @@ void CHero::TakeDamage(float a_Damage)
 
 void CHero::BuyHP()
 {
+	if (g_Hero.m_MyMoney < 100) {		// static 함수이기 때문에 g_Hero로 접근
+		return;
+	}
+
+	if (g_Hero.m_CurHP < g_Hero.m_MaxHP) {
+		g_Hero.m_CurHP = g_Hero.m_CurHP + 30.0f;
+		if (g_Hero.m_CurHP > g_Hero.m_MaxHP) {
+			g_Hero.m_CurHP = g_Hero.m_MaxHP;
+		}
+		g_Hero.m_MyMoney -= 100;
+	}	// if (g_Hero.m_CurHP > g_Hero.m_MaxHP)
 }
 
 void CHero::BuySkill()
 {
+	if (g_Hero.m_MyMoney >= 150) {
+		g_Hero.m_SkillCount++;
+		g_Hero.m_MyMoney -= 150;
+	}	// if (g_Hero.m_MyMoney >= 150)
 }
 
 void CHero::BuyShield()
 {
+	if (g_Hero.m_MyMoney >= 200) {
+		g_Hero.m_ShieldCount++;
+		g_Hero.m_MyMoney -= 200;
+	}	// if (g_Hero.m_MyMoney >= 200)
 }
 
 CHero g_Hero;

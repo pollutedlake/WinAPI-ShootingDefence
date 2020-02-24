@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CMonster.h"
+#include "CBossMon.h"
 
 #include <vector>
 using namespace std;
@@ -10,6 +11,7 @@ class CMonster_Mgr
 public:
 	vector<Image*> m_ImgList;		// 몬스터 이미지 리스트
 	vector<CMonster*> m_MonList;	// <--- 메모리 풀 방식
+	vector<CBossMon*> m_BossList;	// <--- 보스 몬스터 리스트
 
 	RECT m_cRT;						// 계산용 변수
 	int m_SpawnLim = 6;				// 필드에 등장하는 몬스터 수 제어 변수

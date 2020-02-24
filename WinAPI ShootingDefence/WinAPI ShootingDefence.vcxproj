@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CBackGround.h" />
+    <ClInclude Include="CBossMon.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBullet_Mgr.h" />
     <ClInclude Include="CButton.h" />
@@ -171,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CBackGround.cpp" />
+    <ClCompile Include="CBossMon.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBullet_Mgr.cpp" />
     <ClCompile Include="CButton.cpp" />

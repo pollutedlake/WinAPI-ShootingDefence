@@ -110,6 +110,18 @@ void CItem_Mgr::SpawnItem(Vector2D a_StartV, bool a_isBoss)
 
 void CItem_Mgr::ReSrcClear()
 {
+	//------ 필드상의 아이템 제거하기
+	if (!m_ItemList.empty()) {
+		for (m_Iiter = m_ItemList.begin(); m_Iiter != m_ItemList.end(); m_Iiter++) {
+			if ((*m_Iiter) != NULL) {
+				delete (*m_Iiter);
+				(*m_Iiter) = NULL;
+			}
+		}	// for (m_Iiter = m_ItemList.begin(); m_Iiter != m_ItemList.end(); m_Iiter++)
+
+		m_ItemList.clear();
+	}	// if (!m_ItemList.empty())
+	//------ 필드상의 아이템 제거하기
 }
 
 CItem_Mgr g_ItemMgr;

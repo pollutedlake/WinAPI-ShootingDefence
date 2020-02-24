@@ -1,6 +1,12 @@
 #pragma once
 #include "Vector2D.h"
 
+enum UClassType {
+	CT_Unit = 0,
+	CT_Hero,
+	CT_Monster,
+};
+
 enum BulletType {
 	BT_Normal = 0,
 	BT_Skill1,

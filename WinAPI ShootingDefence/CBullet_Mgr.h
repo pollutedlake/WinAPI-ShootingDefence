@@ -26,7 +26,7 @@ public:
 	void BLMgr_Render(HDC a_hDC);
 	void BLMgr_Destroy();
 
-	void SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, BulletType a_BLTP = BT_Normal);
+	void SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, UClassType a_Own_Type = CT_Hero, BulletType a_BLTP = BT_Normal);
 	void ReSrcClear();
 };
 

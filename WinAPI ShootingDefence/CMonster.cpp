@@ -37,7 +37,7 @@ void CMonster::Update_Unit(float a_DeltaTime, CHero& a_Hero)
 
 	//------ Monster AI
 	if (a_Hero.m_HalfColl + m_HalfColl < a_CalcVec.Magnitude()) {		// (충돌반경의 합 < 중점의 거리) 아직 추적
-		m_DirVec = a_CalcVec;
+		m_DirVec = a_CalcVec;		// 몬스터의 방향 벡터
 		m_DirVec.Normalize();
 		m_CurPos = m_CurPos + (m_DirVec * (a_DeltaTime * m_Speed));
 	}

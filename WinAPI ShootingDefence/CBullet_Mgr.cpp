@@ -84,7 +84,7 @@ void CBullet_Mgr::BLMgr_Destroy()
 	}
 }
 
-void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, BulletType a_BLTP)
+void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, UClassType a_Own_Type, BulletType a_BLTP)
 {
 	CBullet* a_BNode = NULL;
 

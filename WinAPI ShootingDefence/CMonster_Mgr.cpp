@@ -59,6 +59,15 @@ void CMonster_Mgr::MonMgr_Init(HWND a_hWnd)
 	//------ 몬스터 메모리풀로 미리 만들어 놓기
 
 	m_R_brsh = CreateSolidBrush(RGB(255, 0, 0));		// brsh 추가, pen과 같은 방식으로
+
+	//------ 보스 몬스터 초기화
+	CBossMon* a_BossNode = NULL;
+	for (int ii = 0; ii < 3; ii++) {
+		a_BossNode = new CBossMon();
+		a_BossNode->Init_Unit(a_hWnd);
+		m_BossList.push_back(a_BossNode);		// <--- 보스 몬스터 리스트
+	}
+	//------ 보스 몬스터 초기화
 }
 
 void CMonster_Mgr::MonMgr_Update(float a_DeltaTime, HWND a_hWnd, CHero& a_Hero)
@@ -67,6 +76,15 @@ void CMonster_Mgr::MonMgr_Update(float a_DeltaTime, HWND a_hWnd, CHero& a_Hero)
 	SpawnMonster(a_DeltaTime, a_hWnd);
 	//------ 주기적인 Monster Spawn
 
+	//------ 보스몹 업데이트
+	for (int ii = 0; ii < m_BossList.size(); ii++) {
+		if (m_BossList[ii]->m_isActive == false) {
+			continue;
+		}
+
+		m_BossList[ii]->Update_Unit(a_DeltaTime);
+	}
+	//------ 보스몹 업데이트
 	//------ Monster AI
 	// 몬스터끼리 겹치지 않게 하기 관련 변수 ...
 	static Vector2D a_CalcVec;
@@ -148,10 +166,32 @@ void CMonster_Mgr::MonMgr_Render(HDC a_hDC)
 		m_MonList[ii]->Render_Unit(a_hDC, m_R_brsh);
 	}
 	//------ 몬스터 이미지 그리기...
+
+	//------ 보스몹 렌더링...
+	for (int ii = 0; ii < m_BossList.size(); ii++) {
+		if (m_BossList[ii]->m_isActive == false) {
+			continue;
+		}
+
+		m_BossList[ii]->Render_Unit(a_hDC);
+	}
+	//------ 보스몹 렌더링...
 }
 
 void CMonster_Mgr::MonMgr_Destroy()
 {
+	//------ 보스몹 제거하기
+	for (int ii = 0; ii < m_BossList.size(); ii++) {
+		if (m_BossList[ii] != NULL) {
+			m_BossList[ii]->Destroy_Unit();
+
+			delete m_BossList[ii];
+			m_BossList[ii] = NULL;
+		}
+	}
+	m_BossList.clear();
+	//------ 보스몹 제거하기
+
 	//------ 몬스터 이미지 제거하기
 	for (int aii = 0; aii < m_ImgList.size(); aii++) {
 		if (m_ImgList[aii] != NULL) {
