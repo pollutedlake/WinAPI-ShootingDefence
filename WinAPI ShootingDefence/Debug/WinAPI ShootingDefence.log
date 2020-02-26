@@ -1,45 +1,5 @@
-﻿  CBossMon.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(52,38): warning C4244: '인수': 'double'에서 'const float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(170,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(176,33): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(178,116): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(178,90): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(178,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBossMon.cpp(178,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CBullet.cpp
-  CBullet_Mgr.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBullet_Mgr.cpp(31,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBullet_Mgr.cpp(52,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBullet_Mgr.cpp(67,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBullet_Mgr.cpp(91,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CBullet_Mgr.cpp(117,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  CHero.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(124,35): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(125,35): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(155,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(161,14): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(163,116): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(163,90): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(163,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(163,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(285,110): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(285,98): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(285,82): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(285,63): warning C4244: '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CHero.cpp(316,35): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CItem_Mgr.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CItem_Mgr.cpp(103,74): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CItem_Mgr.cpp(104,76): warning C4244: '=': 'UINT'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CMonster.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(70,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(76,33): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(78,34): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(81,34): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(84,116): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(84,90): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(84,54): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster.cpp(84,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CMonster_Mgr.cpp
+﻿  CMonster_Mgr.cpp
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CAnimData.h(23,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(80,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(99,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(107,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
@@ -50,15 +10,10 @@ C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-Shoot
 C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(206,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(228,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
 C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(248,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(337,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(355,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  CMyMain.cpp
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(88,25): warning C4244: '=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(107,22): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(111,27): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(115,29): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(119,28): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMyMain.cpp(124,31): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GlobalValue.cpp
-  코드를 생성하고 있습니다...
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(324,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(343,24): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(423,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(443,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(463,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\WinAPI ShootingDefence\CMonster_Mgr.cpp(468,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   WinAPI ShootingDefence.vcxproj -> C:\Users\psh95\OneDrive\바탕 화면\상현\공부\Game Programing\WinAPI-ShootingDefence\Debug\WinAPI ShootingDefence.exe

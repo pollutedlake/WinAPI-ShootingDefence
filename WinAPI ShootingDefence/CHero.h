@@ -1,24 +1,11 @@
 #pragma once
 #include "Vector2D.h"
+#include "CUnit.h"
 
-//------ GDI+ Image 사용을 위한 헤더 추가
-#include <Ole2.h>
-#include <gdiplus.h>
-#pragma comment(lib, "Gdiplus.lib")
-using namespace Gdiplus;
-//------ GDI+ Image 사용을 위한 헤더 추가
-
-class CHero
+class CHero : public CUnit
 {
-	Image* m_SocketImg;		// 애니 소켓처럼 사용할 포인터
-
 	HWND m_hWnd;
 	float m_Speed = 300.0f;
-
-	int m_ImgSizeX;			// 이미지의 가로 사이즈
-	int m_ImgSizeY;			// 이미지의 세로 사이즈
-	int m_HalfWidth = 15;	// 기본 이미지의 가로 반사이즈
-	int m_HalfHeight = 15;	// 기본 이미지의 세로 반사이즈
 
 	//------ 쉴드 관련 변수
 	float m_DeltaTime = 0.0f;
@@ -69,7 +56,6 @@ public:
 	void Destroy_Unit();
 
 	void HeroLimitMove(RECT& a_RT);
-	void LoadUnitSize();
 
 	void Load_Shield();
 	void ShieldUpdate();

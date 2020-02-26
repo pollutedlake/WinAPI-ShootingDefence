@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "CBullet_Mgr.h"
 #include "CMonster_Mgr.h"
+#include "CHero.h"
 
 CBullet_Mgr::CBullet_Mgr()
 {
@@ -35,7 +36,26 @@ void CBullet_Mgr::BLMgr_Update(float a_DeltaTime, HWND a_hWnd, CMonster_Mgr* a_M
 
 		m_BullList[aii]->BulletUpdate(a_DeltaTime);
 
-		a_MonMgr->TakeDamage_MonMgr(m_BullList[aii]);
+		if (m_BullList[aii]->m_UC_Type == CT_Hero) {		// 주인공이 쏜 총알이라면...
+			a_MonMgr->TakeDamage_MonMgr(m_BullList[aii]);
+		}
+		else {		// 몬스터가 쏜 총알이라면...
+			//------ 주인공 데미지 주기
+			a_CalcBVec = g_Hero.m_CurPos - m_BullList[aii]->m_CurPos;
+
+			if (0.0f < g_Hero.m_SdOnTime) {
+				if (a_CalcBVec.Magnitude() < g_Hero.m_SdHalfSize) {		// 쉴드 적용중이라면
+					m_BullList[aii]->m_BLActive = false;		// 총알 제거
+					continue;
+				}
+			}
+
+			if (a_CalcBVec.Magnitude() < (g_Hero.m_HalfColl + m_BullList[aii]->m_HalfColl)) {
+				g_Hero.TakeDamage(10);
+				m_BullList[aii]->m_BLActive = false;		// 총알 제거
+			}
+			//------ 주인공 데미지 주기
+		}
 	}	// for (int aii = 0; aii < m_BullList.size(); aii++)
 	//------ 모든 총알 이동관련 업데이트 처리
 }
@@ -108,6 +128,7 @@ void CBullet_Mgr::SpawnBullet(Vector2D a_StartV, Vector2D a_TargetV, UClassType 
 	a_BNode->m_CurPos = a_BNode->m_CurPos + a_BNode->m_DirVec * 20.0f;
 	a_BNode->m_BLActive = true;
 	a_BNode->m_LifeTime = 4.0f;
+	a_BNode->m_UC_Type = a_Own_Type;
 	a_BNode->m_BL_Type = a_BLTP;
 }
 

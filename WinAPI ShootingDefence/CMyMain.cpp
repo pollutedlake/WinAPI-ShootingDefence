@@ -42,6 +42,12 @@ void CMyMain::MainInit(HWND hWnd)
 	ReleaseDC(hWnd, a_hdc);
 	//------ 후면 BackDC 생성
 
+	for (int ii = 0; ii < CT_Length; ii++) {
+		CAnimData* a_Node = new CAnimData();
+		a_Node->LoadAnimList((CT_Type)ii);
+		g_CharAniList.push_back(a_Node);
+	}
+
 	//------ GUI 초기화
 	g_GUI_Mgr.UIMgr_Init();
 	//------ GUI 초기화
@@ -167,6 +173,16 @@ void CMyMain::MainRender(HWND hWnd)
 
 void CMyMain::MainDestroy()
 {
+	//------ 애니메이션 데이터 삭제 부분
+	for (int ii = 0; ii < g_CharAniList.size(); ii++) {
+		if (g_CharAniList[ii] != NULL) {
+			delete g_CharAniList[ii];
+			g_CharAniList[ii] = NULL;
+		}
+	}
+	g_CharAniList.clear();
+	//------ 애니메이션 데이터 삭제 부분
+
 	//------ 아이템 제거
 	g_ItemMgr.ItemMgr_Destroy();
 	//------ 아이템 제거

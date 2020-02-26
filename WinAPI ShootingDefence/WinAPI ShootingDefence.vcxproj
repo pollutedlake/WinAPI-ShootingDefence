@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnimData.h" />
     <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CBossMon.h" />
     <ClInclude Include="CBullet.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="CMonster_Mgr.h" />
     <ClInclude Include="CMyMain.h" />
     <ClInclude Include="CUI_Manager.h" />
+    <ClInclude Include="CUnit.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GlobalValue.h" />
     <ClInclude Include="Resource.h" />
@@ -171,6 +173,7 @@
     <ClInclude Include="WinAPI ShootingDefence.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnimData.cpp" />
     <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CBossMon.cpp" />
     <ClCompile Include="CBullet.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="CMonster_Mgr.cpp" />
     <ClCompile Include="CMyMain.cpp" />
     <ClCompile Include="CUI_Manager.cpp" />
+    <ClCompile Include="CUnit.cpp" />
     <ClCompile Include="GlobalValue.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="WinAPI ShootingDefence.cpp" />

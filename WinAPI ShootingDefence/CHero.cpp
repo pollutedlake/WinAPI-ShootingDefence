@@ -19,7 +19,10 @@ void CHero::Init_Unit(HWND a_hWnd)
 {
 	m_hWnd = a_hWnd;
 
-	m_SocketImg = Image::FromFile(_T("./Nanami/front_Idle/n001.png"));
+	SetAni_Rsc(CT_Nanami);
+	if (m_CurAniState == AS_None) {
+		m_SocketImg = Image::FromFile(_T("./Nanami/front_Idle/n001.png"));
+	}
 
 	LoadUnitSize();
 
@@ -64,8 +67,25 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 
 	if (a_KDirVec.x == 0 && a_KDirVec.y == 0) {
 		// 나중에 숨쉬기 애니 상태 전환
+		ChangeState(Idle);
 	}
 	else {
+		static Vector2D m_ZeroVec;
+		m_ZeroVec.x = 0.0f;
+		m_ZeroVec.y = 0.0f;
+		float a_Angle = GetAngle(m_ZeroVec, a_KDirVec);
+		if (50.0f < a_Angle && a_Angle < 130.0f) {
+			ChangeState(Left_Walk);
+		}
+		else if (130.0f <= a_Angle && a_Angle <= 230.0f) {
+			ChangeState(Back_Walk);
+		}
+		else if (230.0f < a_Angle && a_Angle < 310.0f) {
+			ChangeState(Right_Walk);
+		}
+		else {
+			ChangeState(Front_Walk);
+		}
 		a_KDirVec.Normalize();		// 길이가 1인 벡터
 		m_CurPos = m_CurPos + a_KDirVec * (a_DeltaTime * m_Speed);
 	}
@@ -124,7 +144,7 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 					a_TargetV.x = a_CalcStartV.x + (Radius * cos(Angle));
 					a_TargetV.y = a_CalcStartV.y + (Radius * sin(Angle));
 
-					g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, CT_Unit, BT_Skill1);
+					g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, CT_Hero, BT_Skill1);
 				}
 				m_SkillCount--;
 				if (m_SkillCount < 0) {
@@ -140,6 +160,10 @@ void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 	//------ 궁극기
 
 	ShieldUpdate();
+
+	//------ 애니메이션 프레임 계산 부분
+	CUnit::Update_Unit(a_DeltaTime);		// 부모쪽 Update_Unit()호출
+	//------ 애니메이션 프레임 계산 부분
 }	// void CHero::Update_Unit(float a_DeltaTime, RECT& a_RT)
 
 void CHero::Render_Unit(HDC a_hDC)
@@ -207,19 +231,6 @@ void CHero::HeroLimitMove(RECT& a_RT)
 	if ((float)(a_RT.bottom - a_CalcYYY) < m_CurPos.y) {
 		m_CurPos.y = (float)(a_RT.bottom - a_CalcYYY);
 	}
-}
-
-void CHero::LoadUnitSize()
-{
-	if (m_SocketImg == NULL) {
-		return;
-	}
-
-	m_ImgSizeX = m_SocketImg->GetWidth();
-	m_ImgSizeY = m_SocketImg->GetHeight();
-
-	m_HalfWidth = m_ImgSizeX / 2;
-	m_HalfHeight = m_ImgSizeY / 2;
 }
 
 void CHero::Load_Shield()

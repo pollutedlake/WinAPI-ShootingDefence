@@ -79,9 +79,16 @@ void CItem_Mgr::ItemMgr_Destroy()
 
 void CItem_Mgr::SpawnItem(Vector2D a_StartV, bool a_isBoss)
 {
-	int a_CalcRand = rand() % 10;
+	int a_CalcRand = 0;
 	static CItem* a_INode = NULL;
 	a_INode = NULL;
+
+	if (a_isBoss == true) {
+		a_CalcRand = rand() % 5;
+	}
+	else {
+		a_CalcRand = rand() % 10;
+	}
 
 	if (a_CalcRand == 0) {
 		a_INode = new CItem();
@@ -94,6 +101,13 @@ void CItem_Mgr::SpawnItem(Vector2D a_StartV, bool a_isBoss)
 	else if (8 <= a_CalcRand && a_CalcRand <= 9) {
 		a_INode = new CItem();
 		a_INode->m_IT_Type = IT_Silver;
+	}
+
+	if (a_isBoss == true) {
+		if (3 <= a_CalcRand && a_CalcRand <= 4) {
+			a_INode = new CItem();
+			a_INode->m_IT_Type = IT_Silver;
+		}
 	}
 
 	if (a_INode != NULL) {

@@ -69,6 +69,12 @@
     <ClInclude Include="CBossMon.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CUnit.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI ShootingDefence.cpp">
@@ -114,6 +120,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CBossMon.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimData.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CUnit.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

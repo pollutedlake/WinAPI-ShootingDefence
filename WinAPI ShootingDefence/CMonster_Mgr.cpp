@@ -314,6 +314,92 @@ void CMonster_Mgr::SpawnMonster(float a_DeltaTime, HWND a_hWnd)
 		a_SpawnTime = GetSpTimeLevel();
 	}
 	//------ 주기적인 Monster Spawn
+
+	//------ 주기적으로 Boss Mon Spawn
+	//------ 보스 몬스터 Active 감시 및 마리수 카운트
+	static int g_BossCount = 0;
+	static float g_Side = 1.0f;
+
+	g_MonCount = 0;
+	for (int ii = 0; ii < m_BossList.size(); ii++) {
+		if (m_BossList[ii]->m_isActive == true) {
+			g_MonCount++;
+		}
+	}
+	// g_MonCount <--- 지금 활동중인 보스의 마리수
+	// g_BossCount <--- 이전 프레임에서 활동중이던 보스의 마리수
+	if (0 < g_BossCount && g_MonCount <= 0) {		// 활동하던 보스들이 모두 사망한 직후부터 
+		g_Side = 1.0f;
+		m_BossSpawnTm = 5.0f;
+	}
+	g_BossCount = g_MonCount;
+	//------ 보스 몬스터 Active 감시 및 마리수 카운트
+
+	GetClientRect(a_hWnd, &m_cRT);
+
+	if (0.0f < m_BossSpawnTm) {
+		m_BossSpawnTm = m_BossSpawnTm - a_DeltaTime;
+		if (m_BossSpawnTm <= 0.0f) {
+			for (int ii = 0; ii < m_BossList.size(); ii++) {
+				// 보스를 2마리 이상 스폰시키고 싶으면...
+				/*
+				if ( 1 <= g_BossCount) {
+					break;
+				}
+				if (g_BossCount == 0) {	// 이제 한마리 추가 시키는 상황이라면...
+					m_BossSawnTm = 0.1f;		// 0.1초 뒤에 또 한마리 추가 시킨다.
+				}
+				*/
+
+				if (m_BossList[ii]->m_isActive == false) {
+					float a_XX = 0.0f;
+					float a_YY = 0.0f;
+
+					//------ 화면 밖 위치 랜덤 발생
+					a_XX = (float)((rand() % 200) - 100);	// -100 ~ 99
+					float a_PushVal = 50.0f;
+					int a_YLenVal = (int)m_cRT.bottom + 100;
+
+					if (g_BossCount == 1) {		// 두마리째 추가 시키는 상황이라면... (반대편에서 나오도록...)
+						if ((a_XX < 0.0f && g_Side < 0.0f) || (0.0f < a_XX && 0.0f < g_Side)) {
+							a_XX = a_XX * -1.0f;
+						}
+					}
+
+					if (a_XX < 0.0f) {
+						a_XX = a_XX - a_PushVal;
+
+						if (g_BossCount == 0) {		// 이제 한마리 추가 시키는 상황이라면...
+							g_Side = -1.0f;
+						}
+					}
+					else {
+						a_XX = a_XX + (float)m_cRT.right + a_PushVal;
+
+						if (g_BossCount == 0) {		// 이제 한마리 추가 시키는 상황이라면...
+							g_Side = 1.0f;
+						}
+					}
+
+					a_YY = (float)((rand() % a_YLenVal) + (100 / 2));
+					//------ 화면 밖 위치 랜덤 발생
+
+					//------ 임시
+					m_BossList[ii]->m_SocketImg = g_Mon_Mgr.m_ImgList[CT_Boss];
+					m_BossList[ii]->LoadUnitSize();
+					//------ 임시
+
+					m_BossList[ii]->Spawn(a_XX, a_YY);
+					/*if (CT_None < m_BossList[ii]->m_CharType && m_BossList[ii]->m_CharType < CT_Length) {
+						m_BossList[ii]->m_SocketImg = g_Mon_Mgr.m_ImgList[m_BossList[ii]->m_CharType];
+					}*/
+
+					break;
+				}	// if (m_BossList[ii]->m_isActive == false)
+			}	// for (int ii = 0; ii < m_BossList.size(); ii++)
+		}	// if (m_BossSpawnTm <= 0.0f)
+	}	// if (0.0f < m_BossSpawnTm)
+	//------ 주기적으로 Boss Mon Spawn
 }
 
 void CMonster_Mgr::TakeDamage_MonMgr(CBullet* a_RefBullet)
@@ -348,6 +434,28 @@ void CMonster_Mgr::TakeDamage_MonMgr(CBullet* a_RefBullet)
 		}
 	}
 	//------ 총알이 몬스터에 맞았으면 제거해 준다. 몬스터 제거 총알 제거
+
+	//------ 보스데미지 주기
+	if (a_RefBullet->m_BLActive == false) {
+		return;
+	}
+
+	for (int ii = 0; ii < m_BossList.size(); ii++) {
+		if (m_BossList[ii]->m_isActive == false) {
+			continue;
+		}
+
+		a_CurV.x = m_BossList[ii]->m_CurPos.x;		// 마우스의 좌표
+		a_CurV.y = m_BossList[ii]->m_CurPos.y - 30.0f;		// -30.0f은 충돌구에 OffSet값 주기
+		a_CalcBVec = a_CurV - a_RefBullet->m_CurPos;
+		if (a_CalcBVec.Magnitude() < (m_BossList[ii]->m_HalfColl + a_RefBullet->m_HalfColl)) {		// 몬스터의 반지름 10 + 총알의 반지름 10 + 10(좀 넓게)
+			a_Damage = 10.0f;		// 보스는 무조건 스킬도 일반 데미지가 들어가게 한다.
+			m_BossList[ii]->TakeDamage(a_Damage);
+			a_RefBullet->m_BLActive = false;		// 총알 제거
+			break;
+		}
+	}	// for (int ii = 0; ii < m_BossList.size(); ii++)
+	//------ 보스데미지 주기
 }
 
 void CMonster_Mgr::ReSrcClear()
@@ -355,6 +463,13 @@ void CMonster_Mgr::ReSrcClear()
 	for (int ii = 0; ii < m_MonList.size(); ii++) {
 		m_MonList[ii]->m_isActive = false;
 	}
+
+	//------ 남은 보스 제거
+	for (int ii = 0; ii < m_BossList.size(); ii++) {
+		m_BossList[ii]->ReSrcClear();
+	}
+	m_BossSpawnTm = 3.0f;
+	//------ 남은 보스 제거
 }
 
 CT_Type CMonster_Mgr::GetSpMonType()

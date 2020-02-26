@@ -16,6 +16,7 @@ public:
 	RECT m_cRT;						// 계산용 변수
 	int m_SpawnLim = 6;				// 필드에 등장하는 몬스터 수 제어 변수
 
+	float m_BossSpawnTm = 3.0f;
 	HBRUSH m_R_brsh;
 	HGDIOBJ m_R_Old_brsh;
 

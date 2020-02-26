@@ -14,6 +14,16 @@ enum CT_Type {
 	CT_Length,
 };
 
+enum AniState {
+	AS_None,
+	Idle,
+	Front_Walk,
+	Back_Walk,
+	Left_Walk,
+	Right_Walk,
+	AniLength,
+};
+
 enum GameState {
 	GAME_READY = 0,
 	GAME_START,

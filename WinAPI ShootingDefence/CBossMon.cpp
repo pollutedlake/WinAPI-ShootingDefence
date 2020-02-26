@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CBossMon.h"
+#include "CItem_Mgr.h"
 #include "GlobalValue.h"
 
 #include "CBullet.h"
@@ -193,17 +194,129 @@ void CBossMon::Destroy_Unit()
 
 void CBossMon::Spawn(float a_XX, float a_YY)
 {
+	m_CharType = CT_Boss;
+
+	m_Speed = 300.0f;		// 보스의 이동 속도
+	m_HalfColl = 90;		// 보스의 충돌 반경
+	m_MaxHP = 550;			// 보스의 피통
+
+	m_AttackSpeed = 1.0f - ((g_DiffLevel - 3) * 0.05f);
+	if (1.0f < m_AttackSpeed) {
+		m_AttackSpeed = 1.0f;
+	}
+
+	if (m_AttackSpeed < 0.6f) {
+		m_AttackSpeed = 0.6f;
+	}
+
+	m_CurPos.x = a_XX;
+	m_CurPos.y = a_YY;
+
+	m_isActive = true;
+	IsAppearState = true;
+
+	static RECT a_Crt;
+	GetClientRect(m_hWnd, &a_Crt);		// Main DC의 가로 세로 사이즈를 얻어오는 함수
+	static Vector2D m_CenterPos;
+	m_CenterPos.x = (float)(a_Crt.right / 2);
+	m_CenterPos.y = (float)(a_Crt.bottom / 2);		// 화면 중앙 점
+	m_TargetPos = m_CenterPos;
+
+	m_CurHP = m_MaxHP;
+
+	// SetAni_Rsc(m_CharType);
+	// LoadUnitSize();
+
+	m_ImgSizeX = m_SocketImg->GetWidth() * 0.4f;		// 기본 이미지의 가로 사이즈
+	m_ImgSizeY = m_SocketImg->GetHeight() * 0.5f;		// 기본 이미지의 세로 사이즈
+	m_HalfWidth = m_ImgSizeX / 2;						// 기본 이미지의 가로 반사이즈
+	m_HalfHeight = m_ImgSizeY / 2;						// 기본 이미지의 세로 반사이즈
 }
 
 bool CBossMon::BossLimitMove(RECT& a_RT)
 {
-	return false;
+	static float a_CalcLXXX = 0.0f;
+	static float a_CalcLYYY = 0.0f;
+
+	a_CalcLXXX = m_CurPos.x - (m_HalfColl + 50.0f);
+	if (a_CalcLXXX < a_RT.left) {
+		return false;
+	}
+
+	a_CalcLYYY = m_CurPos.y - (m_HalfColl + 50.0f);
+	if (a_CalcLYYY < a_RT.top) {
+		return false;
+	}
+
+	a_CalcLXXX = m_CurPos.x + (m_HalfColl + 50.0f);
+	if (a_RT.right < a_CalcLXXX) {
+		return false;
+	}
+
+	a_CalcLYYY = m_CurPos.y + (m_HalfColl + 50.0f);
+	if (a_RT.bottom < a_CalcLYYY) {
+		return false;
+	}
+
+	return true;
+}
+
+void CBossMon::TakeDamage(float a_Damage)
+{
+	m_CurHP = m_CurHP - (int)a_Damage;
+
+	if (m_CurHP <= 0) {		// 사망처리
+		m_isActive = false;
+
+		//------ 보상 주기
+		for (int ii = 0; ii < 5; ii++) {
+			Vector2D a_CalcPos = m_CurPos;
+			a_CalcPos.x = m_CurPos.x + (float)((rand() % 60) - 30);
+			a_CalcPos.y = m_CurPos.y + (float)((rand() % 60) - 30);
+			//------ Item 스폰
+			if (ii < 2) {
+				g_ItemMgr.SpawnItem(a_CalcPos, true);
+			}
+			else {
+				g_ItemMgr.SpawnItem(a_CalcPos);
+			}
+			//------ Item 스폰
+		}
+		//------ 보상 주기
+	}
 }
 
 void CBossMon::ReSrcClear()
 {
+	m_isActive = false;
 }
 
 void CBossMon::SkillShoot()
 {
+	float Radius = 100.0f;
+	float Angle = 0.0f;
+	static Vector2D a_CalcStartV;
+	static Vector2D a_TargetV;
+	//------ 12등분 6등분
+	for (Angle = 0; Angle < (2.0f * 3.141592f); Angle += (3.141592f / 12)) {
+		a_CalcStartV = m_CurPos;
+
+		a_TargetV.x = a_CalcStartV.x + (Radius * cos(Angle));
+		a_TargetV.y = a_CalcStartV.y + (Radius * sin(Angle));
+
+		g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, CT_Monster, BT_Normal);
+	}
+}
+
+void CBossMon::LoadUnitSize()
+{
+	if (m_SocketImg == NULL) {
+		return;
+	}
+
+	m_ImgSizeX = m_SocketImg->GetWidth();		// 기본 이미지의 가로 사이즈
+	m_ImgSizeY = m_SocketImg->GetHeight();		// 기본 이미지의 세로 사이즈
+
+	m_HalfWidth = m_ImgSizeX / 2;				// 기본 이미지의 가로 반사이즈
+	m_HalfHeight = m_ImgSizeY / 2;				// 기본 이미지의 세로 반사이즈
 }

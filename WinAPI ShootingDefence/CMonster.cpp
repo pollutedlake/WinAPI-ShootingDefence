@@ -67,7 +67,7 @@ void CMonster::Render_Unit(HDC a_hDC, HBRUSH& a_R_brsh)
 	static HBRUSH h_Old_Brush;
 	h_Old_Brush = (HBRUSH)SelectObject(a_hDC, a_R_brsh);
 	static float a_CalcMXX = 0.0f;
-	static float a_CalcMYY = (int)(m_HalfHeight + 0.8f);
+	static float a_CalcMYY = (int)(m_HalfHeight * 0.8f);
 	static float a_HpBSize = 50;
 	static float a_CurHpSize = 0;
 	a_CalcMXX = a_HpBSize / 2.0f;

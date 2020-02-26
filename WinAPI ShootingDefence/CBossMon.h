@@ -56,7 +56,11 @@ public:
 
 	void Spawn(float a_XX, float a_YY);
 	bool BossLimitMove(RECT& a_RT);		// 보스가 등장하는 연출을 위해 밖에서 스폰되서 화면 안으로 들어오면 멈추게 처리하는 함수
+
+	void TakeDamage(float a_Damage = 10.0f);
 	void ReSrcClear();		// 라운드를 넘어갈때 필드에 등장해 있는 모든 보스 삭제 함수
 	void SkillShoot();		// 보스 스킬 사용
+
+	void LoadUnitSize();
 };
 
