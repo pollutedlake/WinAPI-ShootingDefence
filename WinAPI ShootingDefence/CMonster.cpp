@@ -55,6 +55,16 @@ void CMonster::Update_Unit(float a_DeltaTime, CHero& a_Hero)
 		}
 	}
 	//------ 몬스터 공격 처리 부분
+
+	//------ 애니메이션 프레임 계산 부분
+	if (0.0f < a_CalcVec.x) {
+		ChangeState(Right_Walk);
+	}
+	else {
+		ChangeState(Left_Walk);
+	}
+	CUnit::Update_Unit(a_DeltaTime);
+	//------ 애니메이션 프레임 계산 부분
 }
 
 void CMonster::Render_Unit(HDC a_hDC, HBRUSH& a_R_brsh)
@@ -93,19 +103,6 @@ void CMonster::Destroy_Unit()
 {
 }
 
-void CMonster::LoadUnitSize()
-{
-	if (m_SocketImg == NULL) {
-		return;
-	}
-
-	m_ImgSizeX = m_SocketImg->GetWidth();		// 기본 이미지의 가로 사이즈
-	m_ImgSizeY = m_SocketImg->GetHeight();		// 기본 이미지의 세로 사이즈
-
-	m_HalfWidth = m_ImgSizeX / 2;				// 기본 이미지의 가로 반사이즈
-	m_HalfHeight = m_ImgSizeY / 2;				// 기본 이미지의 세로 반사이즈
-}
-
 void CMonster::Spawn(float a_XX, float a_YY)
 {
 	// 난이도에 따른 HP 변경
@@ -133,7 +130,7 @@ void CMonster::Spawn(float a_XX, float a_YY)
 
 	m_CurHP = m_MaxHP;
 
-	// SetAni_Rsc(m_CharType);
+	SetAni_Rsc(m_CharType);
 }
 
 void CMonster::TakeDamage(float a_Value)

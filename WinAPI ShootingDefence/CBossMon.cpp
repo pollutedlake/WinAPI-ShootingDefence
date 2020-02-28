@@ -118,13 +118,13 @@ void CBossMon::Update_Unit(float a_DeltaTime)
 	}	// 등장 연출이 끝난 상황에서...
 
 	//------ 애니메이션 프레임 계산 부분
-	//if (0.0f < a_CalcVec.x) {
-	//	ChangeState(Right_Walk);		// 몬스터 개별적으로 있어야 한다.
-	//}
-	//else {
-	//	ChangeState(Left_Walk);
-	//}
-	//CUnit::Update_Unit(a_DeltaTime);	// 부모쪽 Update_Unit()함수 호출
+	if (0.0f < a_CalcVec.x) {
+		ChangeState(Right_Walk);		// 몬스터 개별적으로 있어야 한다.
+	}
+	else {
+		ChangeState(Left_Walk);
+	}
+	CUnit::Update_Unit(a_DeltaTime);	// 부모쪽 Update_Unit()함수 호출
 	//------ 애니메이션 프레임 계산 부분
 	//------ Boss AI
 
@@ -224,8 +224,7 @@ void CBossMon::Spawn(float a_XX, float a_YY)
 
 	m_CurHP = m_MaxHP;
 
-	// SetAni_Rsc(m_CharType);
-	// LoadUnitSize();
+	SetAni_Rsc(m_CharType);
 
 	m_ImgSizeX = m_SocketImg->GetWidth() * 0.4f;		// 기본 이미지의 가로 사이즈
 	m_ImgSizeY = m_SocketImg->GetHeight() * 0.5f;		// 기본 이미지의 세로 사이즈
@@ -306,17 +305,4 @@ void CBossMon::SkillShoot()
 
 		g_Bullet_Mgr.SpawnBullet(a_CalcStartV, a_TargetV, CT_Monster, BT_Normal);
 	}
-}
-
-void CBossMon::LoadUnitSize()
-{
-	if (m_SocketImg == NULL) {
-		return;
-	}
-
-	m_ImgSizeX = m_SocketImg->GetWidth();		// 기본 이미지의 가로 사이즈
-	m_ImgSizeY = m_SocketImg->GetHeight();		// 기본 이미지의 세로 사이즈
-
-	m_HalfWidth = m_ImgSizeX / 2;				// 기본 이미지의 가로 반사이즈
-	m_HalfHeight = m_ImgSizeY / 2;				// 기본 이미지의 세로 반사이즈
 }

@@ -302,9 +302,11 @@ void CMonster_Mgr::SpawnMonster(float a_DeltaTime, HWND a_hWnd)
 
 				m_MonList[ii]->m_CharType = GetSpMonType();
 				m_MonList[ii]->Spawn(a_XX, a_YY);
-				if (CT_None < m_MonList[ii]->m_CharType && m_MonList[ii]->m_CharType < CT_Length) {
-					m_MonList[ii]->m_SocketImg = g_Mon_Mgr.m_ImgList[m_MonList[ii]->m_CharType];
-					m_MonList[ii]->LoadUnitSize();
+				if (m_MonList[ii]->m_CurAniState == AS_None) {
+					if (CT_None < m_MonList[ii]->m_CharType && m_MonList[ii]->m_CharType < CT_Length) {
+						m_MonList[ii]->m_SocketImg = g_Mon_Mgr.m_ImgList[m_MonList[ii]->m_CharType];
+						m_MonList[ii]->LoadUnitSize();
+					}
 				}
 
 				break;

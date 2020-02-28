@@ -252,7 +252,7 @@ void CMyMain::NextLevel()
 
 	g_Hero.m_SdOnTime = 0.0f;
 
-	// g_Hero.ChangeState(Idle);
+	g_Hero.ChangeState(Idle);
 	//------ 주인공 초기화
 
 	g_GameState = GAME_START;
@@ -286,7 +286,7 @@ void CMyMain::ReSetGame()
 
 	g_Hero.m_SdOnTime = 0.0f;
 
-	// g_Hero.ChangeState(Idle);
+	g_Hero.ChangeState(Idle);
 
 	g_Hero.m_CurHP = g_Hero.m_MaxHP;
 	g_Hero.m_SkillCount = 0;

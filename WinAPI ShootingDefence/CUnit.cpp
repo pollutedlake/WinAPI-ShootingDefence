@@ -62,9 +62,9 @@ void CUnit::AniFrameUpdate(double a_DeltaTime)
 	}
 
 	m_AniTickCount = m_AniTickCount + a_DeltaTime;
-	if (m_EachAniDelay < m_AniTickCount) {
+	if (m_EachAniDelay < m_AniTickCount) {		// 다음 프레임
 		m_CurAniInx++;
-		if (m_NowImgCount <= m_CurAniInx) {
+		if (m_NowImgCount <= m_CurAniInx) {		// 마지막 프레임일 때
 			m_CurAniInx = 0;
 		}
 

@@ -1,15 +1,9 @@
 #pragma once
 
 #include "Vector2D.h"
+#include "CUnit.h"
 
-//------ GDI+ Image 사용을 위한 헤더 추가
-#include <Ole2.h>
-#include <gdiplus.h>
-#pragma comment(lib, "Gdiplus.lib")
-using namespace Gdiplus;
-//------ GDI+ Image 사용을 위한 헤더 추가
-
-class CBossMon
+class CBossMon : public CUnit
 {
 	HWND m_hWnd = NULL;
 	HBRUSH m_R_brsh;
@@ -24,7 +18,6 @@ class CBossMon
 	float m_BLCycle = 0.0f;			// 공격주기 계산용 변수
 
 public:
-	enum CT_Type m_CharType;
 	bool m_isActive = false;
 
 	Vector2D m_CurPos;
@@ -34,15 +27,6 @@ public:
 	int m_CurHP;
 	int m_MaxHP;
 	//------ 주인공 좌표 계산용 변수들...
-
-	//------ 보스 외형 관련 변수들
-	Image* m_SocketImg;		// 애니 소켓처럼 사용할 포인터
-
-	int m_ImgSizeX;			// 이미지의 가로 사이즈
-	int m_ImgSizeY;			// 이미지의 세로 사이즈
-	int m_HalfWidth = 15;	// 기본 이미지의 가로 반사이즈
-	int m_HalfHeight = 15;	// 기본 이미지의 세로 반사이즈
-	//------ 보스 외형 관련 변수들
 
 public:
 	CBossMon();
@@ -60,7 +44,5 @@ public:
 	void TakeDamage(float a_Damage = 10.0f);
 	void ReSrcClear();		// 라운드를 넘어갈때 필드에 등장해 있는 모든 보스 삭제 함수
 	void SkillShoot();		// 보스 스킬 사용
-
-	void LoadUnitSize();
 };
 
